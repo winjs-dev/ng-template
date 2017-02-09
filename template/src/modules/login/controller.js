@@ -7,8 +7,7 @@
 
 /* name module */
 
-var func = require('../utils'),
-    md5 = require('blueimp-md5');
+var func = require('../utils');
 
 //请确保在module层面该服务被正确的注入
 LoginController.$inject = ['$state', '$cookies', 'loginService'];
@@ -46,7 +45,7 @@ function LoginController($state, $cookies, loginService) {
 
         loginService.login({
             login_account: vm.login_account,
-            password: md5(vm.password),
+            password: vm.password,
             user_type: 101,
             login_way: 3,
             test_answer: 111,
