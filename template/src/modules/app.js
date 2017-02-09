@@ -29,6 +29,9 @@ var modalService = require('./services/modalService');
 //过滤器
 var formatDate = require('./filters/format-date');
 
+// 指令
+var greeting = require('./directives/greeting');
+
 // 具体业务模块
 var home = require('./home');
 var login = require('./login')

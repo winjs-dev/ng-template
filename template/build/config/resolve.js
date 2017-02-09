@@ -15,8 +15,6 @@ module.exports = {
   alias: {
     /* 各种目录 */
 
-    /* 各种目录 */
-    configDir: dirVars.configDir,
     /* less */
     lessDir: path.resolve(dirVars.assetsDir, 'less/'),
     /* js */

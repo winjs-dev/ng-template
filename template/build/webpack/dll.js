@@ -10,6 +10,8 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const os = require('os');
+const HappyPack = require('happypack');
+const happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length});
 const UglifyJsParallelPlugin = require('webpack-uglify-parallel');
 const dirVars = require('../config/dir'); // 与业务代码共用同一份路径的配置表
 
@@ -21,7 +23,6 @@ const vendors = [
   'angular-ui-bootstrap',
   'angular-ui-router',
   'angular-ui-validate',
-  'angular-file-upload',
   'bootstrap_css',
   'jquery',
   'locale_zh'
@@ -52,6 +53,16 @@ module.exports = {
       context: dirVars.staticRootDir
     }),
 
+    //开启 happypack 的线程池
+    //原有的 webpack 对 loader 的执行过程从单一进程的形式扩展多进程模式，原本的流程保持不变
+    new HappyPack({
+      id: 'happybabel',
+      loaders: ['babel?presets[]=es2015&plugins[]=transform-runtime&cacheDirectory=true'],
+      threadPool: happyThreadPool,
+      cache: true,
+      verbose: true
+    }),
+
     // 打包css/less的时候会用到ExtractTextPlugin
     new ExtractTextPlugin('[name].dll.css'),
 
@@ -59,6 +70,9 @@ module.exports = {
       exclude: /node_module\/\.min\.js$/,
       workers: os.cpus().length,
       mangle: true,
+      output: {
+        comments: false,
+      },
       compressor: {
         warnings: false,
         drop_console: true,
