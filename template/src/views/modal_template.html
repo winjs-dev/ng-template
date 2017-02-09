@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="$ctrl.cancel();">
+        <i class="icon icon-close"></i>
+    </button>
+    <h4 class="modal-title">{{$ctrl.modalTitle}}</h4>
+</div>
+<div class="modal-body">
+    <div class="massage">
+        {{$ctrl.modalInfo}}
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" ng-if="$ctrl.isShowCancelBtn" class="btn btn-warning" ng-click="$ctrl.cancel();" ng-bind="$ctrl.cancelBtnText"></button>
+    <button type="button" class="btn btn-success" ng-click="$ctrl.close();" ng-bind="$ctrl.confirmBtnText"></button>
+</div>
+

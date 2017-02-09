@@ -1,2 +1,2 @@
-# ng-template
-基于angularjs创建的模块
+# vue-template
+基于vue创建的模块

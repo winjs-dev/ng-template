@@ -1,0 +1,12 @@
+<div id="home-header" class="jumbotron">
+    <greeting name="vm.name"></greeting>
+</div>
+
+<button class="btn btn-primary" ng-click="vm.changeName()">Change</button>
+<button class="btn btn-danger" ng-click="vm.randomName()">Random</button>
+
+<h4>日历</h4>
+<div class="calendar" style="width: 200px;">
+    <input name="startTime" id="startTime" class="form-control form-text"
+           uib-datepicker-popup="{{format}}" ng-model="vm.startTime" is-open="vm.popupStartTime.opened" datepicker-options="vm.dateOptions" ng-required="true" clear-text="清除" close-text="关闭" current-text="今天" alt-input-formats="vm.altInputFormats" ng-click="vm.openStartTime()">
+</div>
