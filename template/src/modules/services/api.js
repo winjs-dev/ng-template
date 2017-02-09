@@ -6,83 +6,96 @@
  */
 
 /* name module */
-var func = require('../utils/index');
+var modalOptions = require('jsDir/modal_options');
 
-Api.$inject = ['$cookies', '$http'];
+Api.$inject = ['$state', '$cookies', '$http', 'modalService'];
 
-function Api($cookies, $http) {
+function Api($cookies, $http, modalService) {
 
-    var params = {
-        successCallback: function (result) {
-            console.log('success' + JSON.stringify(result))
-        },
+  var params = {
+    successCallback: function (result) {
+      console.log('success' + JSON.stringify(result))
+    },
 
-        failCallback: function (response) {
-            console.log('error' + response)
-        },
+    failCallback: function (response) {
 
-        disconnectCallback: function (response) {
-            console.log("访问失败")
-        }
+      var errorOptions = angular.copy(modalOptions);
+
+      errorOptions.modalTitle = '失败';
+
+      if (i18n.global[response.error_no]) {
+        errorOptions.modalInfo = i18n.global.error[response.error_no];
+      } else if (!response.error_info) {
+        errorOptions.modalInfo = i18n.global.error[response.error_no];
+      } else {
+        errorOptions.modalInfo = response.error_info;
+      }
+
+      modalService.openModal(errorOptions);
+    },
+
+    disconnectCallback: function (response) {
+      console.log("访问失败")
     }
+  }
 
 
-    /**
-     * 扩展不同url前缀
-     * 如根域名是'muziso.com'， 有不同扩展，client, common等
-     * @param type
-     * @returns {*}
-     */
-    function appendUrlPrefix(type) {
-        if (type == 1) {
-            return g_config.home + g_config.open_api;
-        }
+  /**
+   * 扩展不同url前缀
+   * 如根域名是'muziso.com'， 有不同扩展，client, common等，方法可随着项目更改
+   * @param type
+   * @returns {*}
+   */
+  function appendUrlPrefix(type) {
+    if (type == 1) {
+      return LOCAL_CONFIG.API_HOME;
     }
+  }
 
-    function sendRequest(options) {
-        // 默认get请求
-        options.method = (options.method === null || options.method === '' || typeof(options.method) === 'undefined') ? 'get' : options.method;
-        options.data = (options.data === null || options.data === '' || typeof(options.data) === 'undefined') ? {'date': new Date().getTime()} : options.data;
+  function sendRequest(options) {
+    // 默认get请求
+    options.method = (options.method === null || options.method === '' || typeof(options.method) === 'undefined') ? 'get' : options.method;
+    options.data = (options.data === null || options.data === '' || typeof(options.data) === 'undefined') ? {'date': new Date().getTime()} : options.data;
 
-        // data扩展
-        options.data = angular.extend(options.data, {
-            user_token: $cookies.get('user_token')
-        });
+    // data扩展
+    options.data = angular.extend(options.data, {
+      user_token: $cookies.get('user_token')
+    });
 
-        options = func.extend(params, options);
+    options = func.extend(params, options);
 
-        $http({
-            url: options.url,
-            method: options.method,
-            data: options.data,
-            headers: options.headers,
-            timeout: 10000,
-        }).then(function (response) {
-            var result = response.data.data[0],
-                isSuccess = result.error_no == '0' || angular.isUndefined(result.error_no) ? true : false;
+    $http({
+      url: options.url,
+      method: options.method,
+      data: options.data,
+      headers: options.headers,
+      timeout: 10000,
+    }).then(function (response) {
+      var result = response.data.data[0],
+        isSuccess = result && result.error_no == '0' ? true : false;
 
-            if (isSuccess) {
-                options.successCallback(result);
-            } else {
-                options.failCallback(result);
-            }
-        }, function (response) {
-            //404等错，一般不考虑，直接在拦截器里面统一做拦截处理
-            options.disconnectCallback(response);
-        });
+      if (isSuccess) {
+        options.successCallback(result);
+      } else {
+        options.failCallback(result);
+      }
+    }, function (response) {
+      //404等错，一般不考虑，直接在拦截器里面统一做拦截处理
+      options.disconnectCallback(response);
+    });
+  }
+
+  return {
+    postRequest: function (options) {
+      options.url = appendUrlPrefix(1) + options.url;
+      options.method = 'post';
+      sendRequest(options);
+    },
+    getRequest: function (options) {
+      options.url = appendUrlPrefix(1) + options.url;
+      sendRequest(options);
     }
-
-    return {
-        postRequest: function (options) {
-            options.url = appendUrlPrefix(1) + options.url;
-            options.method = 'post';
-            sendRequest(options);
-        },
-        getRequest: function (options) {
-            options.url = appendUrlPrefix(1) + options.url;
-            sendRequest(options);
-        }
-    };
+  }
 }
 
 
