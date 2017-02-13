@@ -37,7 +37,7 @@ var home = require('./home');
 var login = require('./login')
 
 window.i18n = lang; // 国际化
-
+window.CT = require('./config');
 /**
  * angular.module(name, [requires], [configFn]);
  * name：字符串类型，代表模块的名称；

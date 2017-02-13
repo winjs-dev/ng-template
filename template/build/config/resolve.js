@@ -26,6 +26,11 @@ module.exports = {
     bootstrap: path.resolve(dirVars.nodeModueDir, './bootstrap/dist/js/bootstrap.min'),
     bootstrap_css: path.resolve(dirVars.nodeModueDir, './bootstrap/dist/css/bootstrap.min.css'),
 
+    // 项目公用
+    func: path.resolve(dirVars.modulesDir, 'utils/index'),
+    lang: path.resolve(dirVars.modulesDir, 'lang/zh-cn'),
+    config: path.resolve(dirVars.modulesDir, 'config'),
+
     /* components */
     locale_zh: path.resolve(dirVars.jsVendorDir, 'angular-locale_zh-cn'),
   },
