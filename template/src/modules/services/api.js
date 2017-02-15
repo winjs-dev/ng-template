@@ -7,6 +7,7 @@
 
 /* name module */
 var modalOptions = require('jsDir/modal_options');
+var config = require('../config');
 
 Api.$inject = ['$state', '$cookies', '$http', 'modalService'];
 
@@ -48,7 +49,7 @@ function Api($cookies, $http, modalService) {
    */
   function appendUrlPrefix(type) {
     if (type == 1) {
-      return LOCAL_CONFIG.API_HOME;
+      return LOCAL_CONFIG.API_HOME + config.OPEN_API;
     }
   }
 
