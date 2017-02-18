@@ -25,6 +25,7 @@ const vendors = [
   'angular-ui-router',
   'angular-ui-validate',
   'bootstrap_css',
+  'cloud_ui',
   'jquery',
   'locale_zh'
 ];

@@ -25,6 +25,7 @@ module.exports = {
     /* bootstrap 相关 */
     bootstrap: path.resolve(dirVars.nodeModueDir, './bootstrap/dist/js/bootstrap.min'),
     bootstrap_css: path.resolve(dirVars.nodeModueDir, './bootstrap/dist/css/bootstrap.min.css'),
+    cloud_ui: path.resolve(dirVars.nodeModueDir, './cloud-broker-ui/dist/css/cloud.min.css'),
 
     // 项目公用
     func: path.resolve(dirVars.modulesDir, 'utils/index'),
