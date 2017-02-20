@@ -34,7 +34,6 @@ var greeting = require('./directives/greeting');
 
 // 具体业务模块
 var home = require('./home');
-var login = require('./login')
 
 window.i18n = lang; // 国际化
 window.CT = require('./config');
@@ -47,7 +46,7 @@ window.CT = require('./config');
 // .module('app', [uiRouter, ngAnimate, ngCookies, ngMessages, ngSanitize, uiBootstrap, uiValidate, home])
 
 angular
-  .module('app', [uiRouter, ngCookies, ngMessages, 'ui.bootstrap', 'ui.validate', home, login])
+  .module('app', [uiRouter, ngCookies, ngMessages, 'ui.bootstrap', 'ui.validate', home])
   .config(routing)
   .config(httping)
   // generate an error when a rejected promise is not handled  https://docs.angularjs.org/api/ng/provider/$qProvider
