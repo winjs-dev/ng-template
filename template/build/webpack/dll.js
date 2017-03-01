@@ -69,7 +69,7 @@ const dll = {
     new ExtractTextPlugin('[name].dll.css'),
 
     new UglifyJsParallelPlugin({
-      exclude: /node_module\/\.min\.js$/,
+      exclude: /\.min\.js$/,
       workers: os.cpus().length,
       mangle: true,
       output: {

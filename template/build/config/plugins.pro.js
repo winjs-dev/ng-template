@@ -26,7 +26,7 @@ pluginsConfig.push(
   }),
 
   new UglifyJsParallelPlugin({
-    exclude: /node_module\/\.min\.js$/,
+    exclude: /\.min\.js$/,
     workers: os.cpus().length,
     mangle: true,
     output: {

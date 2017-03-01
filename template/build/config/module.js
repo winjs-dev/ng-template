@@ -35,10 +35,6 @@ module.exports = {
       loader: lessLoader,
     },
     {
-      test: /\.vue$/,
-      loader: 'vue'
-    },
-    {
       test: /\.json$/,
       loader: 'json'
     },
@@ -55,7 +51,7 @@ module.exports = {
     {
       test: /\.html$/,
       include: dirVars.srcDir,
-      loader: 'html?-minimize' //避免压缩html,https://github.com/webpack/html-loader/issues/50
+      loader: 'raw'
     },
     {
       // 图片加载器，雷同file-loader，更适合图片，可以将较小的图片转成base64，减少http请求
