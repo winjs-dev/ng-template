@@ -10,14 +10,12 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const dirVars = require('./dir');
 
-const __PRODUCTION__ = process.env.PRODUCTION;
-
 var lessLoader;
 
-if (__PRODUCTION__) {
-  lessLoader = ExtractTextPlugin.extract('css?minimize&-autoprefixer!postcss!less');
+if (process.env.PRODUCTION) {
+  lessLoader = ExtractTextPlugin.extract('happypack/loader?id=happyless');
 } else {
-  lessLoader = 'style!css!less';
+  lessLoader = 'happypack/loader?id=happyless';
 }
 
 module.exports = {
@@ -28,11 +26,11 @@ module.exports = {
     },
     {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract('css?minimize&-autoprefixer!postcss'),
+      loader: ExtractTextPlugin.extract('happypack/loader?id=happycss'),
     },
     {
       test: /\.less$/,
-      loader: lessLoader,
+      loader: lessLoader
     },
     {
       test: /\.json$/,
