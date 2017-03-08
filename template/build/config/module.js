@@ -26,7 +26,7 @@ module.exports = {
     },
     {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract('happypack/loader?id=happycss'),
+      loader: ExtractTextPlugin.extract('css?minimize&-autoprefixer!postcss'),
     },
     {
       test: /\.less$/,
@@ -49,7 +49,7 @@ module.exports = {
     {
       test: /\.html$/,
       include: dirVars.srcDir,
-      loader: 'raw'
+      loaders: ['happypack/loader?id=happyhtml']
     },
     {
       // 图片加载器，雷同file-loader，更适合图片，可以将较小的图片转成base64，减少http请求

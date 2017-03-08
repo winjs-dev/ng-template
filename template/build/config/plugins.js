@@ -42,8 +42,8 @@ var configPlugins = [
   }),
 
   new HappyPack({
-    id: 'happycss',
-    loaders: ['css?minimize&-autoprefixer!postcss'],
+    id: 'happyhtml',
+    loaders: ['raw!html-minify'],
     threadPool: happyThreadPool,
     cache: true,
     verbose: true
