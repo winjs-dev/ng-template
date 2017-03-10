@@ -43,7 +43,7 @@ var configPlugins = [
 
   new HappyPack({
     id: 'happyhtml',
-    loaders: ['raw!html-minify'],
+    loaders: ['raw'],
     threadPool: happyThreadPool,
     cache: true,
     verbose: true
