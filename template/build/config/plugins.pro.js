@@ -26,9 +26,12 @@ pluginsConfig.push(
   }),
 
   new UglifyJsParallelPlugin({
-    exclude: /\.min\.js$/,
+    exclude: /node_module\/\.min\.js$/,
     workers: os.cpus().length,
-    mangle: true,
+    // http://pinkyjie.com/2016/03/05/webpack-tips/
+    // 使用module的.name属性来决定一个service的名字，然后在别的地方使用依赖注入来引入这个service的话，这个时候一旦你使用-p参数，程序就会报错：找不到provider，MockDataProvider <- MockData。因为在e2e.data.js文件中你export的class虽然叫MockData，但这个名字会被UglifyJsPlugin改掉。这是因为这个插件有一个mangle选项，会对所有函数名变量名进行混淆，在压缩的同时保证安全。
+    // {except: ['$', 'exports', 'require']},
+    mangle: false,
     output: {
       comments: false,
     },
