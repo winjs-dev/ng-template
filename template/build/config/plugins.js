@@ -34,14 +34,6 @@ var configPlugins = [
   }),
 
   new HappyPack({
-    id: 'happyless',
-    loaders: process.env.PRODUCTION ? ['css?minimize&-autoprefixer!postcss!less'] : ['style!css!less'],
-    threadPool: happyThreadPool,
-    cache: true,
-    verbose: true
-  }),
-
-  new HappyPack({
     id: 'happyhtml',
     loaders: ['raw'],
     threadPool: happyThreadPool,

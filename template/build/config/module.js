@@ -13,10 +13,11 @@ const dirVars = require('./dir');
 var lessLoader;
 
 if (process.env.PRODUCTION) {
-  lessLoader = ExtractTextPlugin.extract('happypack/loader?id=happyless');
+  lessLoader = ExtractTextPlugin.extract('css?minimize&-autoprefixer!postcss!less');
 } else {
-  lessLoader = 'happypack/loader?id=happyless';
+  lessLoader = 'style!css!less';
 }
+
 
 module.exports = {
   loaders: [
