@@ -9,15 +9,19 @@
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const dirVars = require('./dir');
+const utils = require('./utils');
 
 var lessLoader;
 
-if (process.env.PRODUCTION) {
+console.log('* * *');
+console.log(`* * * Running in ${process.env.NODE_ENV} mode `);
+console.log('* * *');
+
+if (utils.isProduction()) {
   lessLoader = ExtractTextPlugin.extract('css?minimize&-autoprefixer!postcss!less');
 } else {
   lessLoader = 'style!css!less';
 }
-
 
 module.exports = {
   loaders: [
