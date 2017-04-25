@@ -12,7 +12,7 @@ var func = require('func'),
 
 Api.$inject = ['$state', '$cookies', '$http', 'modalService'];
 
-function Api($cookies, $http, modalService) {
+function Api($state, $cookies, $http, modalService) {
 
   var params = {
     successCallback: function (result) {
