@@ -6,8 +6,9 @@
  */
 
 /* name module */
-var modalOptions = require('jsDir/modal_options');
-var config = require('../config');
+var func = require('func'),
+    modalOptions = require('jsDir/modal_options'),
+    config = require('../config');
 
 Api.$inject = ['$state', '$cookies', '$http', 'modalService'];
 
@@ -19,18 +20,12 @@ function Api($cookies, $http, modalService) {
     },
 
     failCallback: function (response) {
-
       var errorOptions = angular.copy(modalOptions);
 
       errorOptions.modalTitle = '失败';
 
-      if (i18n.global[response.error_no]) {
-        errorOptions.modalInfo = i18n.global.error[response.error_no];
-      } else if (!response.error_info) {
-        errorOptions.modalInfo = i18n.global.error[response.error_no];
-      } else {
-        errorOptions.modalInfo = response.error_info;
-      }
+      errorOptions.modalParams.error_no = response && response.error_no;
+      errorOptions.modalInfo = response && response.error_info;
 
       modalService.openModal(errorOptions);
     },
@@ -73,7 +68,7 @@ function Api($cookies, $http, modalService) {
       timeout: 10000,
     }).then(function (response) {
       var result = response.data.data[0],
-        isSuccess = result && result.error_no == '0' ? true : false;
+          isSuccess = result && result.error_no == '0' ? true : false;
 
       if (isSuccess) {
         options.successCallback(result);
