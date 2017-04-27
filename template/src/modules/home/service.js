@@ -7,13 +7,13 @@
 
 /* name module */
 
-function HomeService() {
+function Service() {
     var vm = this;
 
     vm.names = ['John', 'Elisa', 'Mark', 'Annie'];
 
     vm.getName = getName;
-    
+
     function getName() {
         var totalNames = vm.names.length;
         var rand = Math.floor(Math.random() * totalNames);
@@ -23,4 +23,4 @@ function HomeService() {
     return vm;
 }
 
-module.exports = HomeService;
+module.exports = Service;

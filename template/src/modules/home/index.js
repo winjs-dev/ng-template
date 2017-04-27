@@ -12,12 +12,12 @@ require('./style.less');
 var Routing = require('./route');
 
 // 引入service、controller、directive等文件
-var HomeController = require('./controller');
-var HomeService = require('./service');
+var Controller = require('./controller');
+var Service = require('./service');
 
 //setter定义模块
 module.exports = angular.module('app.home', [])
     .config(Routing)
-    .service('homeService', HomeService)
-    .controller('homeController', HomeController)//setter controller
+    .service('service', Service)
+    .controller('controller', Controller)
     .name;

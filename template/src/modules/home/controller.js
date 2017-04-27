@@ -8,9 +8,9 @@
 /* name module */
 require('locale_zh');
 
-HomeController.$inject = ['homeService'];
+Controller.$inject = ['service'];
 
-function HomeController(homeService) {
+function Controller(service) {
     var vm = this;
 
     vm.random = homeService;
@@ -18,9 +18,9 @@ function HomeController(homeService) {
 
     vm.changeName = changeName;
     vm.randomName = randomName;
-    
+
     function changeName() {
-        vm.name = 'angular-tips'; 
+        vm.name = 'angular-tips';
     }
 
     function randomName() {
@@ -40,4 +40,4 @@ function HomeController(homeService) {
     };
 }
 
-module.exports = HomeController;
+module.exports = Controller;

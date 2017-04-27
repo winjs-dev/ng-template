@@ -14,7 +14,7 @@ function Route($stateProvider) {
         .state('home', {
             url: '/',
             template: require('../../views/home.html'),
-            controller: 'homeController',
+            controller: 'controller',
             controllerAs: 'vm'  //使用vm而不是使用$scope去操作视图
         });
 }
