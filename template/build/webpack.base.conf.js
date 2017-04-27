@@ -1,6 +1,7 @@
 var path = require('path')
 var utils = require('./utils')
 var config = require('./config')
+var webpack = require('webpack')
 var os = require('os')
 var HappyPack = require('happypack')
 var happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length})

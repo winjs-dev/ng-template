@@ -13,7 +13,6 @@ Controller.$inject = ['service'];
 function Controller(service) {
     var vm = this;
 
-    vm.random = homeService;
     vm.name = 'world';
 
     vm.changeName = changeName;
@@ -24,7 +23,7 @@ function Controller(service) {
     }
 
     function randomName() {
-       vm.name = vm.random.getName();
+       vm.name = service.getName();
     }
 
     // 日历相关
