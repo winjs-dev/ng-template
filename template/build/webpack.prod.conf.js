@@ -21,8 +21,8 @@ var webpackConfig = merge(baseWebpackConfig, {
   devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
     path: config.build.assetsRoot,
-    filename: utils.assetsPath('[name].[chunkhash].js'),
-    chunkFilename: utils.assetsPath('[id].[chunkhash].js')
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[id].[chunkhash].js'
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
@@ -84,20 +84,8 @@ var webpackConfig = merge(baseWebpackConfig, {
         from: config.directory.vendor + '/respond.min.js',
         to: 'assets/respond.min.js'
       }, {
-        from: config.directory.assets + 'images/face_default.png',
-        to: 'assets/face_default.png'
-      }, {
-        from: config.directory.assets + 'images/viewpoint_default.png',
-        to: 'assets/viewpoint_default.png'
-      }, {
-        from: config.directory.assets + 'images/ad_information.png',
-        to: 'assets/ad_information.png'
-      }, {
-        from: config.directory.assets + 'images/ad_selfstock.png',
-        to: 'assets/ad_selfstock.png'
-      }, {
-        from: config.directory.assets + 'images/emoji',
-        to: 'assets/emoji'
+        from: config.directory.src + '/views',
+        to: 'views'
       }
     ])
   ]

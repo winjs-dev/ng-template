@@ -10,9 +10,6 @@ var base = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    publicPath: utils.isProduction()
-      ? config.build.assetsPublicPath
-      : config.dev.assetsPublicPath,
     libraryTarget: 'umd',
     umdNamedDefine: true
   },

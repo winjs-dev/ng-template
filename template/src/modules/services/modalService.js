@@ -7,7 +7,7 @@
 
 /* name module */
 
-var template = require('../../views/modal_template.html');
+var template = './views/modal_template.html';
 
 ModalService.$inject = ['$injector'];
 
@@ -62,7 +62,7 @@ function ModalService($injector) {
     var modalInstance = uibModal.open({
       animation: true,
       ariaDescribedBy: 'modal-body',
-      template: options.template || template,
+      templateUrl: options.template || template,
       controller: options.controller || defaultController,
       size: options.size || 'sm',
       resolve: resolve,

@@ -13,7 +13,7 @@ function Route($stateProvider) {
     $stateProvider
         .state('home', {
             url: '/',
-            template: require('../../views/home.html'),
+            templateUrl: './views/home.html',
             controller: 'controller',
             controllerAs: 'vm'  //使用vm而不是使用$scope去操作视图
         });
