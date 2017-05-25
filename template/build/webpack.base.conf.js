@@ -17,11 +17,11 @@ var base = {
     extensions: ['.js', '.json'],
     alias: {
       /* less */
-      lessDir: path.resolve(config.directory.assets, 'less/'),
+      '@less': path.resolve(config.directory.assets, 'less/'),
       /* js */
-      jsDir: path.resolve(config.directory.assets, 'js/'),
+      '@js': path.resolve(config.directory.assets, 'js/'),
       /* plugins */
-      pluginsDir: path.resolve(config.directory.assets, 'plugins/'),
+      '@plugins': path.resolve(config.directory.assets, 'plugins/'),
       /* bootstrap 相关 */
       'bootstrap': path.resolve(config.directory.nodeModules, './bootstrap/dist/js/bootstrap.min'),
       'bootstrap_css': path.resolve(config.directory.nodeModules, './bootstrap/dist/css/bootstrap.min.css'),
@@ -85,17 +85,7 @@ var base = {
     //原有的 webpack 对 loader 的执行过程从单一进程的形式扩展多进程模式，原本的流程保持不变
     new HappyPack({
       id: 'happybabel',
-      loaders: [{
-        loader: 'babel-loader',
-        options: {
-          presets: [
-            'es2015',
-            'stage-0'
-          ],
-          plugins: ['transform-runtime'],
-          comments: false,
-        }
-      }],
+      loaders: ['babel-loader'],
       threadPool: happyThreadPool,
       cache: true,
       verbose: true
