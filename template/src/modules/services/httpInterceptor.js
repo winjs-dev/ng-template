@@ -7,7 +7,7 @@
 
 /* name module */
 
-var modalOptions = require('jsDir/modal_options');
+var modalOptions = require('@js/modal_options');
 
 httpInterceptor.$inject = ['$rootScope', '$q', '$cookies', '$injector', 'modalService'];
 

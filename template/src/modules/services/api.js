@@ -7,7 +7,7 @@
 
 /* name module */
 var func = require('func'),
-    modalOptions = require('jsDir/modal_options'),
+    modalOptions = require('@js/modal_options'),
     config = require('../config');
 
 Api.$inject = ['$state', '$cookies', '$http', 'modalService'];
