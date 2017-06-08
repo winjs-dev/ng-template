@@ -14,28 +14,6 @@ Api.$inject = ['$state', '$cookies', '$http', 'modalService'];
 
 function Api($state, $cookies, $http, modalService) {
 
-  var params = {
-    successCallback: function (result) {
-      console.log('success' + JSON.stringify(result))
-    },
-
-    failCallback: function (response) {
-      var errorOptions = angular.copy(modalOptions);
-
-      errorOptions.modalTitle = '失败';
-
-      errorOptions.modalParams.error_no = response && response.error_no;
-      errorOptions.modalInfo = response && response.error_info;
-
-      modalService.openModal(errorOptions);
-    },
-
-    disconnectCallback: function (response) {
-      console.log("访问失败")
-    }
-  }
-
-
   /**
    * 扩展不同url前缀
    * 如根域名是'muziso.com'， 有不同扩展，client, common等，方法可随着项目更改
@@ -49,6 +27,28 @@ function Api($state, $cookies, $http, modalService) {
   }
 
   function sendRequest(options) {
+
+    var params = {
+      successCallback: function (result) {
+        console.log('success' + JSON.stringify(result))
+      },
+
+      failCallback: function (response) {
+        var errorOptions = angular.copy(modalOptions);
+
+        errorOptions.modalTitle = '失败';
+
+        errorOptions.modalParams.error_no = response && response.error_no;
+        errorOptions.modalInfo = response && response.error_info;
+
+        modalService.openModal(errorOptions);
+      },
+
+      disconnectCallback: function (response) {
+        console.log("访问失败")
+      }
+    };
+
     // 默认get请求
     options.method = (options.method === null || options.method === '' || typeof(options.method) === 'undefined') ? 'get' : options.method;
     options.data = (options.data === null || options.data === '' || typeof(options.data) === 'undefined') ? {'date': new Date().getTime()} : options.data;
