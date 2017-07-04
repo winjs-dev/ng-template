@@ -17,11 +17,11 @@ var base = {
     extensions: ['.js', '.json'],
     alias: {
       /* less */
-      '@less': path.resolve(config.directory.assets, 'less/'),
+      '@less': path.resolve(config.directory.assets, './less/'),
       /* js */
-      '@js': path.resolve(config.directory.assets, 'js/'),
+      '@js': path.resolve(config.directory.assets, './js/'),
       /* plugins */
-      '@plugins': path.resolve(config.directory.assets, 'plugins/'),
+      '@plugins': path.resolve(config.directory.assets, './plugins/'),
       /* bootstrap 相关 */
       'bootstrap': path.resolve(config.directory.nodeModules, './bootstrap/dist/js/bootstrap.min'),
       'bootstrap_css': path.resolve(config.directory.nodeModules, './bootstrap/dist/css/bootstrap.min.css'),
@@ -29,11 +29,11 @@ var base = {
 
       // 项目公用
       'func': path.resolve(config.directory.modules, 'utils'),
-      'lang': path.resolve(config.directory.modules, 'lang/zh-cn'),
+      'lang': path.resolve(config.directory.modules, './lang/zh-cn'),
       'config': path.resolve(config.directory.modules, 'config'),
 
-      'variable': path.resolve(config.directory.assets, 'less/variable.less'),
-      'mixins': path.resolve(config.directory.assets, 'less/mixins.less'),
+      'variable': path.resolve(config.directory.assets, './less/variable.less'),
+      'mixins': path.resolve(config.directory.nodeModules, './magicless/magicless.less'),
       /* components */
       'locale_zh': path.resolve(config.directory.vendor, 'angular-locale_zh-cn')
     }
