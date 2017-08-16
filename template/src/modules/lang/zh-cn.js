@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     global: {
         cancel: '取消',
         send: '发送',

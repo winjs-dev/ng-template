@@ -6,33 +6,31 @@
  */
 
 /* name module */
-var func = require('func'),
-    modalOptions = require('@js/modal_options'),
-    config = require('../config');
+import func from 'func';
+import modalOptions from '@js/modal_options';
+import config from 'config';
 
-Api.$inject = ['$state', '$cookies', '$http', 'modalService'];
-
-function Api($state, $cookies, $http, modalService) {
-
-  /**
-   * 扩展不同url前缀
-   * 如根域名是'muziso.com'， 有不同扩展，client, common等，方法可随着项目更改
-   * @param type
-   * @returns {*}
-   */
-  function appendUrlPrefix(type) {
-    if (type == 1) {
-      return LOCAL_CONFIG.API_HOME + config.OPEN_API;
-    }
+/**
+ * 扩展不同url前缀
+ * 如根域名是'muziso.com'， 有不同扩展，client, common等，方法可随着项目更改
+ * @param type
+ * @returns {*}
+ */
+function appendUrlPrefix(type) {
+  if (type == 1) {
+    return LOCAL_CONFIG.API_HOME + config.OPEN_API;
   }
+}
+
+export default function Api($cookies, $http, modalService) {
 
   function sendRequest(options) {
 
+    // 有则重写，没有默认
     var params = {
       successCallback: function (result) {
         console.log('success' + JSON.stringify(result))
       },
-
       failCallback: function (response) {
         var errorOptions = angular.copy(modalOptions);
 
@@ -43,7 +41,6 @@ function Api($state, $cookies, $http, modalService) {
 
         modalService.openModal(errorOptions);
       },
-
       disconnectCallback: function (response) {
         console.log("访问失败")
       }
@@ -81,18 +78,22 @@ function Api($state, $cookies, $http, modalService) {
     });
   }
 
-  return {
-    postRequest: function (options) {
-      options.url = appendUrlPrefix(1) + options.url;
-      options.method = 'post';
-      sendRequest(options);
-    },
-    getRequest: function (options) {
-      options.url = appendUrlPrefix(1) + options.url;
-      sendRequest(options);
-    }
+  function postRequest(options) {
+    options.url = appendUrlPrefix(1) + options.url;
+    options.method = 'post';
+    sendRequest(options);
   }
+
+  function getRequest(options) {
+    options.url = appendUrlPrefix(1) + options.url;
+    sendRequest(options);
+  }
+
+  return {
+    postRequest,
+    getRequest
+  }
+
 }
 
-
-module.exports = Api;
+Api.$inject = ['$cookies', '$http', 'modalService'];

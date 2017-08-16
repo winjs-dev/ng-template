@@ -7,12 +7,10 @@
 
 /* name module */
 
-var func = require('../utils');
+import func from '../utils';
 
-function formatDate() {
-    return function (time, pattern) {
+export default function formatDate() {
+    return (time, pattern) => {
         return func.formatDate(time, pattern);
     }
 }
-
-module.exports = formatDate;

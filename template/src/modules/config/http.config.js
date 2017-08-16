@@ -7,9 +7,7 @@
 
 /* name module */
 
-httping.$inject = ['$httpProvider'];
-
-function httping($httpProvider) {
+export default function httping($httpProvider) {
     // 跨域头部配置  'application/x-www-form-urlencoded;charset=utf-8';
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
     $httpProvider.defaults.headers.post['Accept'] = 'application/json, text/javascript, */*; q=0.01';
@@ -62,5 +60,5 @@ function httping($httpProvider) {
 
 }
 
-module.exports = httping;
+httping.$inject = ['$httpProvider'];
 

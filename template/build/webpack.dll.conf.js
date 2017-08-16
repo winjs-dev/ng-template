@@ -6,6 +6,7 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+var SpritesmithPlugin = require('webpack-spritesmith')
 
 // 需要dll打包进来的文件
 var vendors = [
@@ -53,7 +54,8 @@ var webpackConfig = merge(baseWebpackConfig, {
 
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-        warnings: false
+        warnings: false,
+        drop_console: true
       },
       sourceMap: true
     }),
@@ -67,6 +69,23 @@ var webpackConfig = merge(baseWebpackConfig, {
     new OptimizeCSSPlugin({
       cssProcessorOptions: {
         safe: true
+      }
+    }),
+    // sprites图片精灵
+    new SpritesmithPlugin({
+      src: {
+        cwd: path.resolve(config.directory.assets, './images/sprites/'),
+        glob: '*.png'
+      },
+      target: {
+        image: path.resolve(config.directory.assets, './images/_sprites.png'),
+        css: path.resolve(config.directory.assets, './less/_sprite.css'),
+      },
+      apiOptions: {
+        cssImageRef: '../images/_sprites.png',
+      },
+      spritesmithOptions: {
+        algorithm: 'top-down'
       }
     })
   ]

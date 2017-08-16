@@ -1,7 +1,12 @@
-@import 'variable';
-@import '~mixins';
-@import 'reset';
-@import 'opacity';
-@import 'scrollbar';
-@import 'font';
-@import 'main';
+@import "variable";
+@import "reset";
+@import (less) "@{fontPath}iconfont.css";
+
+// widget
+@import "./widget/form-file";
+
+// _sprites
+@import (less) "./_sprite.css";
+
+@import "main";
+

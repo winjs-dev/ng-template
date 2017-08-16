@@ -9,51 +9,45 @@
 
 var template = './views/modal_template.html';
 
-ModalService.$inject = ['$injector'];
+var setResulve = function (options) {
+  return {
+    modalTitle: function () {   //错误标题
+      return options.modalTitle || '警告';
+    },
+    modalInfo: function () {    //错误信息
+      return options.modalInfo || '操作失败';
+    },
+    modalType: function () {    //错误类别
+      return options.modalType || '';
+    },
+    modalParams: function () {    //错误类别
+      return options.modalParams || '';
+    },
+    modalTime: function () {    //显示错误停留的时间
+      return options.modalTime || '';
+    },
+    modalClass: function () {    //图标样式
+      return options.modalClass || '';
+    },
+    modalPriority: function () {    //模态窗优先级
+      return options.modalPriority || '';
+    },
+    isShowCancelBtn: function () {   // 是否显示取消按钮
+      return options.isShowCancelBtn || false;
+    },
+    confirmBtnText: function () {   // 确认按钮文案
+      return options.confirmBtnText || '确认';
+    },
+    cancelBtnText: function () {   // 取消按钮文案
+      return options.cancelBtnText || '取消';
 
-function ModalService($injector) {
-  var vm = this;
+    },
+  }
+};
 
-  vm.openModal = openModal;
+export default function ModalService($injector) {
 
-  var setResulve = function (options) {
-    return {
-      modalTitle: function () {   //错误标题
-        return options.modalTitle || '警告';
-      },
-      modalInfo: function () {    //错误信息
-        return options.modalInfo || '操作失败';
-      },
-      modalType: function () {    //错误类别
-        return options.modalType || '';
-      },
-      modalParams: function () {    //错误类别
-        return options.modalParams || '';
-      },
-      modalTime: function () {    //显示错误停留的时间
-        return options.modalTime || '';
-      },
-      modalClass: function () {    //图标样式
-        return options.modalClass || '';
-      },
-      modalPriority: function () {    //模态窗优先级
-        return options.modalPriority || '';
-      },
-      isShowCancelBtn: function () {   // 是否显示取消按钮
-        return options.isShowCancelBtn || false;
-      },
-      confirmBtnText: function () {   // 确认按钮文案
-        return options.confirmBtnText || '确认';
-      },
-      cancelBtnText: function () {   // 取消按钮文案
-        return options.cancelBtnText || '取消';
-
-      },
-    }
-  };
-
-  // 模态框
-  function openModal(options) {
+  return function openModal(options) {
     var resolve = setResulve(options);
     var uibModalStack = $injector.get('$uibModalStack');
     var uibModal = $injector.get('$uibModal');
@@ -87,7 +81,6 @@ function ModalService($injector) {
     });
   }
 
-  return vm;
 }
 
 function defaultController($uibModalInstance, $uibModalStack, $timeout, modalTitle, modalInfo, modalParams, modalTime, isShowCancelBtn, confirmBtnText, cancelBtnText) {
@@ -147,5 +140,4 @@ function closeAll(errorNo, $uibModalStack) {
   }
 }
 
-
-module.exports = ModalService;
+ModalService.$inject = ['$injector'];

@@ -8,6 +8,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+var ImageminPlugin = require('imagemin-webpack-plugin').default
 
 var env = config.build.env
 
@@ -31,7 +32,8 @@ var webpackConfig = merge(baseWebpackConfig, {
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-        warnings: false
+        warnings: false,
+        drop_console: true
       },
       sourceMap: true
     }),
@@ -64,10 +66,25 @@ var webpackConfig = merge(baseWebpackConfig, {
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency'
     }),
-
+    // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'common',
-      minChunks: Infinity
+      name: 'vendor',
+      minChunks: function (module, count) {
+        // any required modules inside node_modules are extracted to vendor
+        return (
+          module.resource &&
+          /\.js$/.test(module.resource) &&
+          module.resource.indexOf(
+            path.join(__dirname, '../node_modules')
+          ) === 0
+        )
+      }
+    }),
+    // extract webpack runtime and module manifest to its own file in order to
+    // prevent vendor hash from being updated whenever app bundle is updated
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest',
+      chunks: ['vendor']
     }),
     // 配置好Dll
     new webpack.DllReferencePlugin({
@@ -77,11 +94,17 @@ var webpackConfig = merge(baseWebpackConfig, {
 
     // 添加版本号
     new webpack.BannerPlugin('current version: ' + new Date()),
+    // 进度条
+    new webpack.ProgressPlugin(),
     // copy custom static assets
     new CopyWebpackPlugin([
       {
         from: config.directory.dll,
         to: 'assets/dll'
+      },
+      {
+        from: path.resolve(config.directory.assets, 'images/copyfiles'),
+        to: 'assets/images/copyfiles'
       },
       {
         from: path.resolve(config.directory.src, 'config.js'),
@@ -93,11 +116,16 @@ var webpackConfig = merge(baseWebpackConfig, {
       }, {
         from: config.directory.vendor + '/respond.min.js',
         to: 'assets/respond.min.js'
-      }, {
-        from: config.directory.src + '/views',
-        to: 'views'
       }
-    ])
+    ]),
+    // Make sure that the plugin is after any plugins that add images
+    new ImageminPlugin({
+      test: 'assets/**',
+      disable: process.env.NODE_ENV !== 'production', // Disable during development
+      pngquant: {
+        quality: '65-80'
+      }
+    })
   ]
 })
 

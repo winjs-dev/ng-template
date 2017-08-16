@@ -5,37 +5,42 @@
  * @version $通用的服务，如工具，接口服务
  */
 
-UtilService.$inject = ['$cookies', 'api'];
+import func from 'func';
 
-function UtilService($cookies, api) {
-    var vm = this;
+export default function UtilService($cookies, api) {
 
-    vm.sendSms = sendSms;
-    vm.notLoggedIn = notLoggedIn;
+  //发送验证码
+  function sendSms(data, cb1, cb2, cb3) {
+    api.postRequest({
+      url: 'sms_validate_code',
+      data: data,
+      successCallback: function (result) {
+        angular.isFunction(cb1) && cb1(result);
+      },
+      failCallback: function (response) {
+        angular.isFunction(cb2) && cb2(response);
+      },
+      disconnectCallback: function () {
+        angular.isFunction(cb3) && cb3();
+      }
 
-    //发送验证码
-    function sendSms(data, cb1, cb2, cb3) {
-        api.postRequest({
-            url: 'sms_validate_code',
-            data: data,
-            successCallback: function (result) {
-                angular.isFunction(cb1) && cb1(result);
-            },
-            failCallback: function (response) {
-                angular.isFunction(cb2) && cb2(response);
-            },
-            disconnectCallback: function () {
-                angular.isFunction(cb3) && cb3();
-            }
+    });
+  }
 
-        });
-    }
+  function notLoggedIn() {
+    return angular.isUndefined($cookies.get('access_token')) || $cookies.get('access_token') == '';
+  }
 
-    function notLoggedIn() {
-        return angular.isUndefined($cookies.get('access_token')) || $cookies.get('access_token') == '';
-    }
-    
-    return vm;
+  function mobileValidator(val) {
+    return func.isMobile(val);
+  }
+
+  return {
+    sendSms,
+    notLoggedIn,
+    mobileValidator
+  }
+
 }
 
-module.exports = UtilService;
+UtilService.$inject = ['$cookies', 'api'];

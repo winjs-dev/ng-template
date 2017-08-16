@@ -7,33 +7,32 @@
 
 /* name module */
 
-require('../assets/less/app.less');
+import '@/assets/less/app.less';
 
-var angular = require('angular');
-require('angular-ui-validate');
-require('angular-ui-bootstrap');
-var lang = require('./lang/zh-cn');
-var uiRouter = require('angular-ui-router');
-var ngCookies = require('angular-cookies');
-var ngMessages = require('angular-messages');
-
+import angular from 'angular';
+import 'angular-ui-validate';
+import 'angular-ui-bootstrap';
+import lang from './lang/zh-cn';
+import uiRouter from 'angular-ui-router';
+import ngCookies from 'angular-cookies';
+import ngMessages from 'angular-messages';
 // 配置
-var routing = require('./config/app.config');
-var httping = require('./config/http.config');
-var httpInterceptor = require('./services/httpInterceptor');
-var api = require('./services/api');
-var authService = require('./services/authService');
-var utilService = require('./services/utilService');
-var modalService = require('./services/modalService');
+import routing from './config/app.config';
+import httping from './config/http.config';
+// service
+import httpInterceptor from './services/httpInterceptor';
+import api from './services/api';
+import modalService from './services/modalService';
+import utilService from './services/utilService';
 
+import authService from'./run/authService';
+import loader from'./run/loader';
 //过滤器
-var formatDate = require('./filters/format-date');
-
+import formatDate from'./filters/format-date';
 // 指令
-var greeting = require('./directives/greeting');
-
-// 具体业务模块
-var home = require('./home');
+import greeting from'./directives/greeting';
+// 业务模块
+import './business';
 
 window.i18n = lang; // 国际化
 window.CT = require('./config');
@@ -43,24 +42,30 @@ window.CT = require('./config');
  * requires：字符串的数组，代表该模块依赖的其他模块列表，如果不依赖其他用空数组，
  * configFn：用来对该模块进行一些配置对模块中的组件进行实例化对象实例之前的特定配置
  */
-// .module('app', [uiRouter, ngAnimate, ngCookies, ngMessages, ngSanitize, uiBootstrap, uiValidate, home])
+const mainModule = angular.module('app', [uiRouter, ngCookies, ngMessages, 'ui.bootstrap', 'ui.validate', 'business']);
 
-angular
-  .module('app', [uiRouter, ngCookies, ngMessages, 'ui.bootstrap', 'ui.validate', home])
-  .config(routing)
-  .config(httping)
-  // generate an error when a rejected promise is not handled  https://docs.angularjs.org/api/ng/provider/$qProvider
-  .config(['$qProvider', function ($qProvider) {
-    $qProvider.errorOnUnhandledRejections(false);
-  }])
-  .factory('modalService', modalService)
-  .factory('utilService', utilService)
-  .factory('httpInterceptor', httpInterceptor)
-  .factory('api', api)
-  .directive('greeting', greeting)
-  .filter('formatDate', formatDate)
-  .run(authService);
+// config
+mainModule.config(routing);
+mainModule.config(httping);
+// generate an error when a rejected promise is not handled  https://docs.angularjs.org/api/ng/provider/$qProvider
+mainModule.config(['$qProvider', function ($qProvider) {
+  $qProvider.errorOnUnhandledRejections(false);
+}]);
 
+mainModule.service('httpInterceptor', httpInterceptor);
+mainModule.service('api', api);
+mainModule.service('modalService', modalService);
+mainModule.service('utilService', utilService);
+
+// directive
+mainModule.directive('greeting', greeting);
+
+// filter
+mainModule.filter('formatDate', formatDate);
+
+// run
+mainModule.run(authService);
+mainModule.run(loader);
 
 // 手动初始化
 angular.bootstrap(document, ['app']);

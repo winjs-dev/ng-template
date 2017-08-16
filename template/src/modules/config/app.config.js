@@ -1,15 +1,14 @@
 /**
  *
  * @authors liwb (you@example.org)
- * @date    2016/12/10 23:29
+ * @date    2017/6/2 23:29
  * @version $ IIFE
  */
 
 /* name module */
-routing.$inject = ['$urlRouterProvider'];
 
-function routing($urlRouterProvider) {
+export default function routing($urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
 }
 
-module.exports = routing;
+routing.$inject = ['$urlRouterProvider'];

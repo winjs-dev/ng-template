@@ -7,14 +7,12 @@
 
 /* name module */
 
-function greeting() {
+export default function greeting() {
     return {
         restric: 'E',
         scope: {
             name: '='
         },
-        template: '<h1>Hello, {{name}}</div>'
+        template: '<h1>Hello, workld {{name}}</div>'
     }
 }
-
-module.exports = greeting;

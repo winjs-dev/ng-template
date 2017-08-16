@@ -7,10 +7,7 @@
 
 /* name module */
 
-AuthService.$inject = ['$rootScope', '$state', '$stateParams', '$cookies', 'utilService'];
-
-function AuthService($rootScope, $state, $stateParams, $cookies, utilService) {
-  var vm = this;
+export default function AuthService($rootScope, $state, $stateParams, $cookies, utilService) {
   /**
    * 初始化服务，这样就可以在html页面中直接调用
    * @type {$state|*}
@@ -48,4 +45,4 @@ function AuthService($rootScope, $state, $stateParams, $cookies, utilService) {
   });
 }
 
-module.exports = AuthService;
+AuthService.$inject = ['$rootScope', '$state', '$stateParams', '$cookies', 'utilService'];

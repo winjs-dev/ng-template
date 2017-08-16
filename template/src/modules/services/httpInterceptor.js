@@ -7,14 +7,12 @@
 
 /* name module */
 
-var modalOptions = require('@js/modal_options');
-
-httpInterceptor.$inject = ['$rootScope', '$q', '$cookies', '$injector', 'modalService'];
+import modalOptions from '@js/modal_options';
 
 //这里说明一下为什么使用$injector.get的方式去获取$uibModal，而不选直接注入的方式，是因为在该JS启动加载之前ui.bootstrap应该还没加载，所以会报依赖找不到
 //需要我们使用$injector的方式去动态加载
-function httpInterceptor($rootScope, $q, $cookies, $injector, modalService) {
-    var interceptor = {
+export default function httpInterceptor($rootScope, $q, $cookies, $injector, modalService) {
+    return {
         /**
          * 接收一个参数，它是 $http 中的标准 config 对象，同时也需要返回一个标准 config ，
          * 此时可以添加各类身份验证信息，同时也可在此启动进度条
@@ -109,9 +107,7 @@ function httpInterceptor($rootScope, $q, $cookies, $injector, modalService) {
 
             return $q.reject(err);
         }
-    };
-
-    return interceptor;
+    }
 }
 
-module.exports = httpInterceptor;
+httpInterceptor.$inject = ['$rootScope', '$q', '$cookies', '$injector', 'modalService'];
