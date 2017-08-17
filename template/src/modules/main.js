@@ -1,13 +1,13 @@
 /**
  *
  * @authors liwb (you@example.org)
- * @date    2016/12/10 23:37
+ * @date    2017/08/17 10:00
  * @version $ IIFE
  */
 
 /* name module */
 
-import '@/assets/less/app.less';
+import '@less/app.less';
 
 import angular from 'angular';
 import 'angular-ui-validate';

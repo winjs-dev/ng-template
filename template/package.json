@@ -15,7 +15,8 @@
     "bootstrap": "^3.3",
     "cloud-broker-ui": "latest",
     "jquery": "^2.2.3",
-    "magicless": "latest"
+    "magicless": "latest",
+    "nprogress": "^0.2.0"
   },
   "devDependencies": {
     "angular-animate": "^1.6.0",

@@ -17,6 +17,7 @@ var vendors = [
   'angular-ui-router',
   'angular-ui-validate',
   'bootstrap_css',
+  'nprogress_css',
   'cloud_ui',
   'jquery',
   'locale_zh'
@@ -71,6 +72,8 @@ var webpackConfig = merge(baseWebpackConfig, {
         safe: true
       }
     }),
+    // 进度条
+    new webpack.ProgressPlugin(),
     // sprites图片精灵
     new SpritesmithPlugin({
       src: {
