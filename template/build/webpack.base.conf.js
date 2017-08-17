@@ -30,6 +30,9 @@ var base = {
       'bootstrap_css': path.resolve(config.directory.nodeModules, './bootstrap/dist/css/bootstrap.min.css'),
       'cloud_ui': path.resolve(config.directory.nodeModules, './cloud-broker-ui/dist/css/cloud-ui.min.css'),
 
+      //nprogress
+      'nprogress_css': path.resolve(config.directory.nodeModules, './nprogress/nprogress.css'),
+
       // 项目公用
       'func': path.resolve(config.directory.modules, 'utils'),
       'lang': path.resolve(config.directory.modules, './lang/zh-cn'),
