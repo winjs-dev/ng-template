@@ -8,6 +8,7 @@
 /* name module */
 import './style.less';
 
+import angular from 'angular';
 import Route from './route';
 import Controller from './controller';
 import Service from './service';
@@ -17,5 +18,3 @@ export default angular.module('app.home', [])
   .controller('controller', Controller)
   .service('service', Service)
   .name;
-
-

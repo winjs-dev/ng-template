@@ -14,5 +14,3 @@ module.exports = {
   // 流式服务，如上传图片路径
   UPLOADING_API: 'fileOpenapi/'
 };
-
-

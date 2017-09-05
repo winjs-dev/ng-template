@@ -8,7 +8,7 @@
 /* name module */
 
 export default function routing($urlRouterProvider) {
-    $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/');
 }
 
 routing.$inject = ['$urlRouterProvider'];

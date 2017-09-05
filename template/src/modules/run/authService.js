@@ -14,15 +14,14 @@ export default function AuthService($rootScope, $state, $stateParams, $cookies, 
    */
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
-  $rootScope.i18n = i18n;
+  $rootScope.i18n = window.i18n;
   $rootScope.util = utilService;
-
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-
     // 当前页面
     var toName = toState.name;
     var fromName = fromState.name;
 
+    console.log('fromName:' + fromName);
     console.log('toName:' + toName);
     //
     // // 如果用户不存在或用户未登录

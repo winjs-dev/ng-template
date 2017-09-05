@@ -34,7 +34,7 @@ var base = {
       'nprogress_css': path.resolve(config.directory.nodeModules, './nprogress/nprogress.css'),
 
       // 项目公用
-      'func': path.resolve(config.directory.modules, 'utils'),
+      'utils': path.resolve(config.directory.modules, 'utils'),
       'lang': path.resolve(config.directory.modules, './lang/zh-cn'),
       'config': path.resolve(config.directory.modules, 'config'),
 
@@ -46,6 +46,15 @@ var base = {
   },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: [utils.resolve('src/modules')],
+        options: {
+          formatter: require('eslint-friendly-formatter')
+        }
+      },
       {
         test: require.resolve('jquery'),
         loader: 'expose-loader?$!expose-loader?jQuery'

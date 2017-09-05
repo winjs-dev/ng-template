@@ -7,52 +7,61 @@
 
 /* name module */
 
+import angular from 'angular';
+
 var template = './views/modal_template.html';
 
 var setResulve = function (options) {
   return {
-    modalTitle: function () {   //错误标题
+    // 错误标题
+    modalTitle: function () {
       return options.modalTitle || '警告';
     },
-    modalInfo: function () {    //错误信息
+    // 错误信息
+    modalInfo: function () {
       return options.modalInfo || '操作失败';
     },
-    modalType: function () {    //错误类别
+    // 错误类别
+    modalType: function () {
       return options.modalType || '';
     },
-    modalParams: function () {    //错误类别
+    // 错误参数
+    modalParams: function () {
       return options.modalParams || '';
     },
-    modalTime: function () {    //显示错误停留的时间
+    // 显示错误停留的时间
+    modalTime: function () {
       return options.modalTime || '';
     },
-    modalClass: function () {    //图标样式
+    // 样式
+    modalClass: function () {
       return options.modalClass || '';
     },
-    modalPriority: function () {    //模态窗优先级
+    // 模态窗优先级
+    modalPriority: function () {
       return options.modalPriority || '';
     },
-    isShowCancelBtn: function () {   // 是否显示取消按钮
+    // 是否显示取消按钮
+    isShowCancelBtn: function () {
       return options.isShowCancelBtn || false;
     },
-    confirmBtnText: function () {   // 确认按钮文案
+    // 确认按钮文案
+    confirmBtnText: function () {
       return options.confirmBtnText || '确认';
     },
-    cancelBtnText: function () {   // 取消按钮文案
+    // 取消按钮文案
+    cancelBtnText: function () {
       return options.cancelBtnText || '取消';
-
-    },
+    }
   }
 };
 
 export default function ModalService($injector) {
-
   return function openModal(options) {
     var resolve = setResulve(options);
     var uibModalStack = $injector.get('$uibModalStack');
     var uibModal = $injector.get('$uibModal');
     var modalInfo = options.modalInfo;
-
     var modalInstance = uibModal.open({
       animation: true,
       ariaDescribedBy: 'modal-body',
@@ -64,23 +73,23 @@ export default function ModalService($injector) {
       openedClass: options.openedClass || 'default-modal'
     });
 
-    if (options.modalPriority == 'unique') {
+    if (options.modalPriority === 'unique') {
       uibModalStack.dismissAll();
     }
 
-    if (modalInfo == '远程服务响应失败,请稍后重试') {
+    if (modalInfo === '远程服务响应失败,请稍后重试') {
       uibModalStack.dismissAll();
     }
 
     modalInstance.result.then(function (selectedItem) {
       angular.isFunction(options.confirmCallback) &&
       options.confirmCallback(selectedItem);
-    }, function () {  // 点击空白的地方，执行
+    }, function () {
+      // 点击空白的地方，执行
       angular.isFunction(options.cancelCallback) &&
       options.cancelCallback();
     });
   }
-
 }
 
 function defaultController($uibModalInstance, $uibModalStack, $timeout, modalTitle, modalInfo, modalParams, modalTime, isShowCancelBtn, confirmBtnText, cancelBtnText) {
@@ -110,14 +119,14 @@ function defaultController($uibModalInstance, $uibModalStack, $timeout, modalTit
   }
 
   function timeout(_modalTime) {
-    //当timeout被定义时，它返回一个promise对象
+    // 当timeout被定义时，它返回一个promise对象
     var timer = $timeout(
       function () {
         ra.cancel();
       },
       _modalTime
     );
-    //将resolve/reject处理函数绑定到timer promise上以确保我们的cancel方法能正常运行
+    // 将resolve/reject处理函数绑定到timer promise上以确保我们的cancel方法能正常运行
     timer.then(
       function () {
         console.log('Timer resolved!', Date.now());
@@ -135,7 +144,7 @@ function defaultController($uibModalInstance, $uibModalStack, $timeout, modalTit
 }
 
 function closeAll(errorNo, $uibModalStack) {
-  if (errorNo == '2009') {
+  if (String(errorNo) === '2009') {
     $uibModalStack.dismissAll();
   }
 }

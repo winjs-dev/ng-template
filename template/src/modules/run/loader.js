@@ -9,18 +9,18 @@
 import progression from 'nprogress';
 
 export default function loader($rootScope, $window) {
-    $rootScope.$on('$stateChangeStart', function () {
-        progression.start();
-    });
+  $rootScope.$on('$stateChangeStart', function () {
+    progression.start();
+  });
 
-    $rootScope.$on('$stateChangeSuccess', function() {
-        progression.done();
-        $window.scrollTo(0, 0);
-    });
+  $rootScope.$on('$stateChangeSuccess', function () {
+    progression.done();
+    $window.scrollTo(0, 0);
+  });
 
-    $rootScope.$on("$stateChangeError", function() {
-        progression.done();
-    });
+  $rootScope.$on('$stateChangeError', function () {
+    progression.done();
+  });
 }
 
 loader.$inject = ['$rootScope', '$window'];

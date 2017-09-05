@@ -4,12 +4,11 @@
  * @date    2016/12/22 0:20
  * @version $通用的服务，如工具，接口服务
  */
-
-import func from 'func';
+import angular from 'angular';
+import {isMobile} from 'utils';
 
 export default function UtilService($cookies, api) {
-
-  //发送验证码
+  // 发送验证码
   function sendSms(data, cb1, cb2, cb3) {
     api.postRequest({
       url: 'sms_validate_code',
@@ -23,16 +22,15 @@ export default function UtilService($cookies, api) {
       disconnectCallback: function () {
         angular.isFunction(cb3) && cb3();
       }
-
     });
   }
 
   function notLoggedIn() {
-    return angular.isUndefined($cookies.get('access_token')) || $cookies.get('access_token') == '';
+    return angular.isUndefined($cookies.get('access_token')) || $cookies.get('access_token') === '';
   }
 
   function mobileValidator(val) {
-    return func.isMobile(val);
+    return isMobile(val);
   }
 
   return {
@@ -40,7 +38,6 @@ export default function UtilService($cookies, api) {
     notLoggedIn,
     mobileValidator
   }
-
 }
 
 UtilService.$inject = ['$cookies', 'api'];

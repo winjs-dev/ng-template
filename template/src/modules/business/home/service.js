@@ -11,6 +11,7 @@ export default class Service {
   constructor(api) {
     this.api = api;
   }
+
   getName() {
     var names = ['John', 'Elisa', 'Mark', 'Annie'];
     var totalNames = names.length;

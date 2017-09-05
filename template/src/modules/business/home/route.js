@@ -14,7 +14,8 @@ export default function Route($stateProvider) {
       url: '/',
       template: template,
       controller: 'controller',
-      controllerAs: 'vm'  //使用vm而不是使用$scope去操作视图
+      // 使用vm而不是使用$scope去操作视图
+      controllerAs: 'vm'
     });
 }
 

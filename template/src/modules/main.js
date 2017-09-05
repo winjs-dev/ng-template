@@ -16,25 +16,30 @@ import lang from './lang/zh-cn';
 import uiRouter from 'angular-ui-router';
 import ngCookies from 'angular-cookies';
 import ngMessages from 'angular-messages';
+
 // 配置
 import routing from './config/app.config';
 import httping from './config/http.config';
+
 // service
 import httpInterceptor from './services/httpInterceptor';
 import api from './services/api';
 import modalService from './services/modalService';
 import utilService from './services/utilService';
+import authService from './run/authService';
+import loader from './run/loader';
 
-import authService from'./run/authService';
-import loader from'./run/loader';
-//过滤器
-import formatDate from'./filters/format-date';
+// 过滤器
+import formatDate from './filters/format-date';
+
 // 指令
-import greeting from'./directives/greeting';
+import greeting from './directives/greeting';
+
 // 业务模块
 import './business';
 
-window.i18n = lang; // 国际化
+// 国际化
+window.i18n = lang;
 window.CT = require('./config');
 /**
  * angular.module(name, [requires], [configFn]);

@@ -8,11 +8,11 @@
 /* name module */
 
 export default function greeting() {
-    return {
-        restric: 'E',
-        scope: {
-            name: '='
-        },
-        template: '<h1>Hello, workld {{name}}</div>'
-    }
+  return {
+    restric: 'E',
+    scope: {
+      name: '='
+    },
+    template: '<h1>Hello, workld {{name}}</div>'
+  }
 }
