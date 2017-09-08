@@ -30,7 +30,7 @@ import authService from './run/authService';
 import loader from './run/loader';
 
 // 过滤器
-import formatDate from './filters/format-date';
+import filterDate from './filters/filterDate';
 
 // 指令
 import greeting from './directives/greeting';
@@ -66,7 +66,7 @@ mainModule.service('utilService', utilService);
 mainModule.directive('greeting', greeting);
 
 // filter
-mainModule.filter('formatDate', formatDate);
+mainModule.filter('filterDate', filterDate);
 
 // run
 mainModule.run(authService);

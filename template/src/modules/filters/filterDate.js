@@ -9,7 +9,7 @@
 
 import {formatDate} from 'utils';
 
-export default function formatDate() {
+export default function filterDate() {
   return (time, pattern) => {
     return formatDate(time, pattern);
   }
