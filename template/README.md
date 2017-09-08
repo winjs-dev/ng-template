@@ -8,6 +8,9 @@
 # install dependencies
 npm install
 
+# packaging a third party files
+npm run dll
+
 # serve with hot reload at localhost:3000
 npm run dev
 

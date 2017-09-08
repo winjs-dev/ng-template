@@ -7,10 +7,10 @@
 
 /* name module */
 
-import func from 'utils';
+import {formatDate} from 'utils';
 
 export default function formatDate() {
   return (time, pattern) => {
-    return func.formatDate(time, pattern);
+    return formatDate(time, pattern);
   }
 }

@@ -1,6 +1,18 @@
 # Change Log
 ---
 
+## 1.0.3
+ 
+`2017-09-08`
+ 
+- webpack 自动构建工具
+ 
+   - `Changed` 引入`cloud-utils`工具类函数集合，替换工程里的`utils`
+ 
+- src
+ 
+   - `New` 引入`store.js`，详见`template/src/assets/js/vendor/store.js` 
+   
 
 ## 1.0.2
  

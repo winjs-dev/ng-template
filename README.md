@@ -1,5 +1,5 @@
 # ng-template
-基于angular创建的模块
+基于angular创建的H5模板
 
 ## Usage
 

@@ -7,7 +7,6 @@
 
 /* name module */
 import angular from 'angular';
-import {extend} from 'utils';
 import modalOptions from '@js/modal_options';
 import config from 'config';
 
@@ -20,6 +19,21 @@ import config from 'config';
 function appendUrlPrefix(type) {
   if (type === '1') {
     return window.LOCAL_CONFIG.API_HOME + config.OPEN_API;
+  }
+}
+
+/**
+ * 当继承对象中不包含被继承对象的某个值得时候就将被继承的对象的值付给继承对象
+ * angular.extend的升级版
+ * @param obj 继承对象
+ * @param dest 被继承对象
+ * @returns {*}
+ */
+function extend(obj, dest) {
+  for (var keyDest in dest) {
+    if (!obj[keyDest]) {
+      obj[keyDest] = dest[keyDest];
+    }
   }
 }
 

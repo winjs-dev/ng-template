@@ -1,6 +1,6 @@
 {
   "name": "{{ name }}",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "{{ description }}",
   "author": "{{ author }}",
   "private": true,
@@ -15,6 +15,7 @@
     "angular": "^1.6.0",
     "bootstrap": "^3.3",
     "cloud-broker-ui": "latest",
+    "cloud-utils": "latest",
     "jquery": "^2.2.3",
     "magicless": "latest",
     "nprogress": "^0.2.0"

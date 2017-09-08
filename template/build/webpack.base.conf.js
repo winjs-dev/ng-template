@@ -34,10 +34,9 @@ var base = {
       'nprogress_css': path.resolve(config.directory.nodeModules, './nprogress/nprogress.css'),
 
       // 项目公用
-      'utils': path.resolve(config.directory.modules, 'utils'),
+      'utils': path.resolve(config.directory.nodeModules, './cloud-utils/dist/cloud-utils.min'),
       'lang': path.resolve(config.directory.modules, './lang/zh-cn'),
       'config': path.resolve(config.directory.modules, 'config'),
-
       'variable': path.resolve(config.directory.assets, './less/variable.less'),
       'mixins': path.resolve(config.directory.nodeModules, './magicless/magicless.less'),
       /* components */
