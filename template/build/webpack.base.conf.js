@@ -17,6 +17,8 @@ var base = {
     extensions: ['.js', '.json'],
     alias: {
       '@': path.resolve(config.directory.src),
+      /* assets */
+      '@assets': path.resolve(config.directory.src, './assets'),
       /* less */
       '@less': path.resolve(config.directory.assets, './less/'),
       /* js */
