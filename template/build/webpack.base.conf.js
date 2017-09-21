@@ -16,33 +16,32 @@ var base = {
   resolve: {
     extensions: ['.js', '.json'],
     alias: {
-      '@': path.resolve(config.directory.src),
+      '@': utils.resolve('src'),
       /* assets */
-      '@assets': path.resolve(config.directory.src, './assets'),
+      '@assets': utils.resolve('src/assets'),
       /* less */
-      '@less': path.resolve(config.directory.assets, './less/'),
+      '@less': utils.resolve('src/assets/less'),
       /* js */
-      '@js': path.resolve(config.directory.assets, './js/'),
+      '@js': utils.resolve('src/assets/js'),
       /* plugins */
-      '@plugins': path.resolve(config.directory.assets, './plugins/'),
+      '@plugins': utils.resolve('src/assets/plugins'),
       /* views */
-      '@views': path.resolve(config.directory.src, './views/'),
+      '@views': utils.resolve('src/modules/views'),
       /* bootstrap 相关 */
-      'bootstrap': path.resolve(config.directory.nodeModules, './bootstrap/dist/js/bootstrap.min'),
-      'bootstrap_css': path.resolve(config.directory.nodeModules, './bootstrap/dist/css/bootstrap.min.css'),
-      'cloud_ui': path.resolve(config.directory.nodeModules, './cloud-broker-ui/dist/css/cloud-ui.min.css'),
+      'bootstrap': utils.resolve('node_modules/bootstrap/dist/js/bootstrap.min'),
+      'bootstrap_css': utils.resolve('node_modules/bootstrap/dist/css/bootstrap.min.css'),
+      'cloud_ui': utils.resolve('node_modules/cloud-broker-ui/dist/css/cloud-ui.min.css'),
 
       //nprogress
-      'nprogress_css': path.resolve(config.directory.nodeModules, './nprogress/nprogress.css'),
+      'nprogress_css': utils.resolve('node_modules/nprogress/nprogress.css'),
 
       // 项目公用
-      'utils': path.resolve(config.directory.nodeModules, './cloud-utils/dist/cloud-utils.min'),
-      'lang': path.resolve(config.directory.modules, './lang/zh-cn'),
-      'config': path.resolve(config.directory.modules, 'config'),
-      'variable': path.resolve(config.directory.assets, './less/variable.less'),
-      'mixins': path.resolve(config.directory.nodeModules, './magicless/magicless.less'),
+      'lang': utils.resolve('src/modules/lang/zh-cn'),
+      'variable': utils.resolve('src/assets/less/variable.less'),
+      'utils': utils.resolve('node_modules/cloud-utils/dist/cloud-utils.min'),
+      'mixins': utils.resolve('node_modules/magicless/magicless.less'),
       /* components */
-      'locale_zh': path.resolve(config.directory.vendor, 'angular-locale_zh-cn')
+      'locale_zh':utils.resolve('src/assets/js/vendor/angular-locale_zh-cn')
     }
   },
   module: {
@@ -124,7 +123,7 @@ var base = {
       threadPool: happyThreadPool,
       cache: true,
       verbose: true
-    }),
+    })
   ]
 }
 
