@@ -18,7 +18,8 @@
     "cloud-utils": "latest",
     "jquery": "^2.2.3",
     "magicless": "latest",
-    "nprogress": "^0.2.0"
+    "nprogress": "^0.2.0",
+    "raven-js": "^3.24.2"
   },
   "devDependencies": {
     "angular-animate": "^1.6.0",

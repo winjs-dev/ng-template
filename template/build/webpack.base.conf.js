@@ -26,7 +26,7 @@ var base = {
       /* plugins */
       '@plugins': utils.resolve('src/assets/plugins'),
       /* views */
-      '@views': utils.resolve('src/modules/views'),
+      '@views': utils.resolve('src/views'),
       /* bootstrap 相关 */
       'bootstrap': utils.resolve('node_modules/bootstrap/dist/js/bootstrap.min'),
       'bootstrap_css': utils.resolve('node_modules/bootstrap/dist/css/bootstrap.min.css'),
@@ -37,6 +37,7 @@ var base = {
 
       // 项目公用
       'lang': utils.resolve('src/modules/lang/zh-cn'),
+      'config': utils.resolve('src/modules/config'),
       'variable': utils.resolve('src/assets/less/variable.less'),
       'utils': utils.resolve('node_modules/cloud-utils/dist/cloud-utils.min'),
       'mixins': utils.resolve('node_modules/magicless/magicless.less'),

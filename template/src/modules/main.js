@@ -39,7 +39,7 @@ import greeting from './directives/greeting';
 import './business';
 
 // 异常捕获
-import './captureException';
+import captureException from './captureException';
 
 // 国际化
 window.i18n = lang;
@@ -50,7 +50,7 @@ window.CT = require('./config');
  * requires：字符串的数组，代表该模块依赖的其他模块列表，如果不依赖其他用空数组，
  * configFn：用来对该模块进行一些配置对模块中的组件进行实例化对象实例之前的特定配置
  */
-const mainModule = angular.module('app', [uiRouter, ngCookies, ngMessages, 'ui.bootstrap', 'ui.validate', 'business', 'captureException']);
+const mainModule = angular.module('app', [uiRouter, ngCookies, ngMessages, 'ui.bootstrap', 'ui.validate', 'business', captureException]);
 
 // config
 mainModule.config(routing);
