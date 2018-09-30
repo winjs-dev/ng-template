@@ -13,10 +13,10 @@
   },
   "dependencies": {
     "angular": "^1.6.0",
-    "bootstrap": "^3.3",
+    "bootstrap": "^4.1.2",
     "cloud-broker-ui": "latest",
     "cloud-utils": "latest",
-    "jquery": "^2.2.3",
+    "jquery": "^3.0.0",
     "magicless": "latest",
     "nprogress": "^0.2.0",
     "raven-js": "^3.24.2"
